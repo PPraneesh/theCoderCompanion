@@ -1,26 +1,17 @@
 import Editor from '@monaco-editor/react';
-import { useState, useEffect } from 'react';
 import Select from 'react-select'
 
-function EditorPane() {
-  let [code, setCode] = useState("// some comment");
-  const options = [
-    { value: 'C++', label: 'C++' },
-    { value: 'javascript', label: 'javascript' },
-    { value: 'Java', label: 'Java' }
-  ]
-  const handleChange = (selectedOption) => {
-    setSelectedOption(selectedOption)
-  }
-  const [selectedOption, setSelectedOption] = useState(options[0])
+function EditorPane(props) {
+
   
-  console.log(selectedOption);
   return (
     <>
-    <Select options={options} onChange={handleChange} />
-  <Editor height="90vh" defaultLanguage={selectedOption} defaultValue={code} />
-      </>
-);
+      <Select options={props.options} onChange={props.handleLangChange} />
+      {props.langOption.value === "javascript" && <Editor height="90vh" defaultLanguage="javascript" defaultValue={props.jsCode}  onChange={props.handleCodeChange} />}
+      {props.langOption.value === "Java" && <Editor height="90vh" defaultLanguage="java" defaultValue={props.javaCode} onChange={props.handleCodeChange} />}
+      {props.langOption.value === "C++" && <Editor height="90vh" defaultLanguage="cpp" defaultValue={props.cppCode} onChange={props.handleCodeChange} />}
+    </>
+  );
 }
 
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Link from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function AllProblems() {
     const [problems, setProblems] = useState([]);
@@ -22,7 +22,7 @@ export default function AllProblems() {
             {problems && problems.map((problem, index) => (
                 <Link to={`/problems/${problem.problemId}`}>
                     <div key={index}>
-                        <p>{key + 1}</p>
+                        <p>{index + 1}</p>
                         <h2>{problem.name}</h2>
                     </div>
                 </Link>
