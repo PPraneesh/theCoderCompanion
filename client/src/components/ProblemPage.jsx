@@ -88,7 +88,7 @@ export default function ProblemPage() {
                                 handleCodeChange={handleCodeChange}
                                 />
                         </Panel>
-                        <PanelResizeHandle />
+                        <PanelResizeHandle/>
                         <Panel>
                             <PanelGroup autoSaveId="example" direction="horizontal">
                                 <Panel defaultSize={50}>

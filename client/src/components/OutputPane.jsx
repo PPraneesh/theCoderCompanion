@@ -1,19 +1,7 @@
-import atob from 'atob';
-
 export default function OutputPane(props) {
-    const output = null;
-    try {
-        output = JSON.parse(props.output);
-    } catch (error) {
-        console.error("Error parsing JSON:", error);
-    }
-    console.log()
-  
     const getOutput = (outputDetails) => {
         let statusId = outputDetails?.status?.id;
-    
-        
-        const decodeBase64 = (str) => {
+        const atobHandler = (str) => {
             try {
                 return window.atob(str);
             } catch (error) {
@@ -21,31 +9,36 @@ export default function OutputPane(props) {
                 return "Error: Invalid base64 encoding";
             }
         };
-    
         if (statusId === 6) {
             return (
-                <pre className="px-2 py-1 font-normal text-xs text-red-500">
-                    {decodeBase64(outputDetails?.compile_output)}
+                <pre>
+                    {atobHandler(outputDetails?.compile_output)}
                 </pre>
             );
         } else if (statusId === 3) {
             return (
-                <pre className="px-2 py-1 font-normal text-xs text-green-500">
+                <pre>
                     {outputDetails.stdout !== null
-                        ? decodeBase64(outputDetails.stdout)
+                        ? atobHandler(outputDetails.stdout)
                         : null}
                 </pre>
             );
         } else if (statusId === 5) {
             return (
-                <pre className="px-2 py-1 font-normal text-xs text-red-500">
+                <pre>
                     Time Limit Exceeded
                 </pre>
             );
-        } else {
+        }else if(statusId === 4){
             return (
-                <pre className="px-2 py-1 font-normal text-xs text-red-500">
-                    {decodeBase64(outputDetails?.stderr)}
+                <pre>
+                    Wrong Answer
+                </pre>
+            );
+        }else {
+            return (
+                <pre>
+                    {atobHandler(outputDetails?.stderr)}
                 </pre>
             );
         }
@@ -61,9 +54,9 @@ export default function OutputPane(props) {
                     ) :
 
                     props.output ? (
-                        getOutput(output)
+                        getOutput(JSON.parse(props.output))
                     ) : (
-                        <h3>{output}</h3>
+                        <h3>{props.output}</h3>
                     )
                     }
                 </div>

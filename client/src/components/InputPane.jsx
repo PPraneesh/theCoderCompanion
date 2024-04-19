@@ -3,12 +3,11 @@ export default function InputPane(props) {
     const handleChange = (e) => {
         props.setInput(e.target.value)
     }
+    console.log(props.input)
     return (
-        <div>
-            <textarea name="" id="" cols="30" rows="1" onChange={handleChange} >
-                {props.input}
-            </textarea>
-
+        <div className="inputPane">
+            <h2>Custom Input</h2>
+            <textarea onChange={handleChange} defaultValue={props.input} />
         </div>
     )
 }

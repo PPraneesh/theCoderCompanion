@@ -1,3 +1,13 @@
 code{
     white-space: pre-wrap;
 }
+.inputPane{
+    height: 60%;
+}
+.resizeHandle{
+    cursor: ns-resize;
+}
+textarea{
+    width: 90%;
+    height: 90%;
+}
