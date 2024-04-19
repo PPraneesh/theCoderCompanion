@@ -59,7 +59,7 @@ export default function OutputPane(props) {
                         <h3>{props.output}</h3>
                     )
                     }
-                </div>
+            </div>
         </div>
     )
 }

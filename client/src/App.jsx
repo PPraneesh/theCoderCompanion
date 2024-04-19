@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AllProblems from './components/AllProblems'
 import ProblemPage from './components/ProblemPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { urlContext } from './urlContext';
 
 function App() {
-   
+    const url = useContext(urlContext)
 
     let routes = createBrowserRouter([
         {
@@ -22,9 +23,9 @@ function App() {
     ])
 
     return (
-        <RouterProvider router={routes} />
+        <urlContext.Provider value={{url}}>
+            <RouterProvider router={routes} />
+        </urlContext.Provider>
     )
 }
 export default App
-
-//https://animated-space-waddle-w6pjj6g7j7w2v994-5173.app.github.dev/
