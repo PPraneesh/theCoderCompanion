@@ -6,7 +6,7 @@ export default function InputPane(props) {
     console.log(props.input)
     return (
         <div className="inputPane">
-            <h2>Custom Input</h2>
+            <h2>Input</h2>
             <textarea onChange={handleChange} defaultValue={props.input} />
         </div>
     )

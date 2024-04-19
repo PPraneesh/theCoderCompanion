@@ -2,40 +2,45 @@ import EditorPane from "./EditorPane"
 import ProblemPane from "./ProblemPane"
 import OutputPane from "./OutputPane"
 import InputPane from "./InputPane"
+import GeminiPane from "./GeminiPane"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { urlContext } from "../urlContext";
 
 
 export default function ProblemPage() {
+    const { url } = useContext(urlContext)
     const options = [
         { value: 'C++', label: 'C++', id: 54 },
-        { value: 'javascript', label: 'javascript' , id:63 },
-        { value: 'Java', label: 'Java',id: 62}
+        { value: 'javascript', label: 'javascript', id: 63 },
+        { value: 'Java', label: 'Java', id: 62 }
     ]
     let [jsCode, setJsCode] = useState("// some comment");
     let [javaCode, setJavaCode] = useState("// some comment");
     let [cppCode, setCppCode] = useState("// some comment");
     let [langOption, setLangOption] = useState(options[0])
-    let [processing,setProcessing] = useState(false)
-    let [output,setOutput] = useState("")
+    let [processing, setProcessing] = useState(false)
+    let [output, setOutput] = useState("")
     const [input, setInput] = useState("")
-    
+
+    const [geminiPane, setGeminiPane] = useState(false)
+
     const { id } = useParams();
     const [problem, setProblem] = useState({});
-    useEffect(()=>{
+    useEffect(() => {
         if (id) {
-            axios.get(`https://animated-space-waddle-w6pjj6g7j7w2v994-3000.app.github.dev/problems/${id}`)
-            .then((res)=>{
-                setProblem(res.data);
-            })
-            .catch(err=>{
-                console.log(err);
-            })
+            axios.get(`${url}problems/${id}`)
+                .then((res) => {
+                    setProblem(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }, [id])
-    
+
     const handleLangChange = (langOption) => {
         setLangOption(langOption)
     }
@@ -44,68 +49,84 @@ export default function ProblemPage() {
         langOption.value === "Java" && setJavaCode(value)
         langOption.value === "C++" && setCppCode(value)
     }
-    const handleProcessing = ()=>{
-        if(processing === false){
+    const handleProcessing = () => {
+        if (processing === false) {
             setProcessing(true)
-            axios.post("https://animated-space-waddle-w6pjj6g7j7w2v994-3000.app.github.dev/submit",{
+            axios.post(`${url}submit`, {
                 lang: langOption.id,
                 code: langOption.value === "javascript" ? jsCode : langOption.value === "Java" ? javaCode : cppCode,
                 customInput: input
             })
-            .then(res=>{
-                console.log("hehehehheeh ", JSON.stringify(res.data))
-                setProcessing(false)
-                setOutput(JSON.stringify(res.data)) // Convert res.data to a string
-            })
-            .catch(err=>{
-                console.log(err)
-                setProcessing(false)
-                setOutput("Error")
-            })
+                .then(res => {
+                    console.log("hehehehheeh ", JSON.stringify(res.data))
+                    setProcessing(false)
+                    setOutput(JSON.stringify(res.data)) // Convert res.data to a string
+                })
+                .catch(err => {
+                    console.log(err)
+                    setProcessing(false)
+                    setOutput("Error")
+                })
         }
     }
 
+    
+
+
     return (
-        <div>
-            <div>
-                <button onClick={handleProcessing} >run</button>
-                <button onClick={handleProcessing}>submit</button>
+        <div className="root-div">
+            <div className="header-div">
+                <div className="buttons-header">
+
+                    <button onClick={handleProcessing} className="run-btn" >Run</button>
+                    <button onClick={handleProcessing} className="run-btn">Submit</button>
+                </div>
+                <button onClick={()=>setGeminiPane(!geminiPane)} className="run-btn gemini-btn">Get help with Gemini</button>
             </div>
-            <PanelGroup autoSaveId="example" direction="horizontal">
-                <Panel defaultSize={25} >
-                    <ProblemPane problem={problem} />
-                </Panel>
-                <PanelResizeHandle />
-                <Panel>
-                    <PanelGroup autoSaveId="example" direction="vertical">
-                        <Panel defaultSize={50}>
-                            <EditorPane langOption={langOption}
-                                options={options}
-                                jsCode={jsCode}
-                                javaCode={javaCode} 
-                                cppCode={cppCode}
-                                handleLangChange={handleLangChange}
-                                handleCodeChange={handleCodeChange}
+            <div className="content">
+
+
+                <PanelGroup autoSaveId="example" direction="horizontal">
+                    <Panel defaultSize={45} minSize={20}>
+                        <ProblemPane problem={problem} />
+                    </Panel>
+                    <PanelResizeHandle className="resize-handle" />
+                    <Panel minSize={20} defaultSize={55}>
+                        <PanelGroup autoSaveId="example" direction="vertical">
+                            <Panel defaultSize={50} className="editor-pane">
+                                <EditorPane langOption={langOption}
+                                    options={options}
+                                    jsCode={jsCode}
+                                    javaCode={javaCode}
+                                    cppCode={cppCode}
+                                    handleLangChange={handleLangChange}
+                                    handleCodeChange={handleCodeChange}
                                 />
-                        </Panel>
-                        <PanelResizeHandle/>
-                        <Panel>
-                            <PanelGroup autoSaveId="example" direction="horizontal">
-                                <Panel defaultSize={50}>
-                                    <InputPane input={problem.input} setInput={setInput}/>
-                                </Panel>
-                                <PanelResizeHandle />
-                                <Panel>
-                                    <OutputPane processing={processing} output={output}/>
-                                </Panel>
-                            </PanelGroup>
-                        </Panel>
-                    </PanelGroup>
+                            </Panel>
+                            <PanelResizeHandle className="resize-handlev" />
+                            <Panel minSize={7} defaultSize={35} maxSize={90}>
+                                <div className="stats-pane">
+                                    <h3>Testcases</h3>
+                                    <PanelGroup autoSaveId="example" direction="horizontal" >
+                                        <Panel defaultSize={50} className="input-pane">
+                                            <InputPane input={problem.input} setInput={setInput} />
+                                        </Panel>
+                                        <hr />
+                                        <Panel defaultSize={50} className="output-pane">
+                                            <OutputPane processing={processing} output={output} />
+                                        </Panel>
+                                    </PanelGroup>
+                                </div>
+                            </Panel>
+                        </PanelGroup>
 
-                </Panel>
-                <PanelResizeHandle />
+                    </Panel>
 
-            </PanelGroup>;
+                </PanelGroup>;
+            </div>
+            
+            <GeminiPane pane={geminiPane}/>
+            
         </div>
     );
 }

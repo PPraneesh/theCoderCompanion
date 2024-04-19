@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {urlContext} from '../urlContext';
 
 export default function AllProblems() {
+    const {url} = useContext(urlContext);
     const [problems, setProblems] = useState([]);
 
     useEffect(() => {
-        axios.get('https://animated-space-waddle-w6pjj6g7j7w2v994-3000.app.github.dev/problems')
+        axios.get(`${url}problems`)
             .then((response) => {
                 setProblems(response.data);
             })
