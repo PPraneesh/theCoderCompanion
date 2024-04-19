@@ -22,6 +22,7 @@ export default function ProblemPage() {
     let [cppCode, setCppCode] = useState("// some comment");
     let [langOption, setLangOption] = useState(options[0])
     let [processing, setProcessing] = useState(false)
+    let [geminiCall, setGeminiCall] = useState(false)
     let [output, setOutput] = useState("")
     const [input, setInput] = useState("")
 
@@ -59,9 +60,8 @@ export default function ProblemPage() {
                 customInput: input
             })
                 .then(res => {
-                    console.log("hehehehheeh ", JSON.stringify(res.data))
                     setProcessing(false)
-                    setOutput(JSON.stringify(res.data)) // Convert res.data to a string
+                    setOutput(JSON.stringify(res.data))
                 })
                 .catch(err => {
                     console.log(err)
@@ -71,24 +71,24 @@ export default function ProblemPage() {
         }
     }
     const geminiHelp = ()=>{
+        setGeminiCall(true)
         let code = langOption.value === "javascript" ? jsCode : langOption.value === "Java" ? javaCode : cppCode
       axios.post(url+'genai',{
         prompt:"See this problem statement and tell what's wrong with given code and dont give corrected code, let me learn, just give few hints or points so that i can understand how to get that logic of question\n"+problem.description+"\n"+code
       })
       .then(res=>{
+        setGeminiCall(false)
         setGeminiResponse(res.data)
       })
     }
     
-
-
     return (
         <div className="root-div">
             <div className="header-div">
                 <div className="buttons-header">
 
                     <button onClick={handleProcessing} className="run-btn" >Run</button>
-                    <button onClick={handleProcessing} className="run-btn">Submit</button>
+                    <button onClick={handleProcessing} className="submit-btn">Submit</button>
                 </div>
                 <button onClick={()=>setGeminiPane(!geminiPane)} className="run-btn gemini-btn">Get help with Gemini</button>
             </div>
@@ -134,7 +134,7 @@ export default function ProblemPage() {
                 </PanelGroup>;
             </div>
             
-            <GeminiPane pane={geminiPane} geminiResponse={geminiResponse} geminiHelp={geminiHelp}/>
+            <GeminiPane geminiCall={geminiCall} pane={geminiPane} geminiResponse={geminiResponse} geminiHelp={geminiHelp}/>
             
         </div>
     );

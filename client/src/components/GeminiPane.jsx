@@ -9,6 +9,9 @@ export default function GeminiPane(props) {
       <md-block>
         {props.geminiResponse}
       </md-block>
+      {props.geminiCall === true && (<div className="loading">
+                             <img src="/tube-spinner.svg" alt="loading" />
+                        </div>)}
       <button className="gemini-help-btn" onClick={props.geminiHelp}>Get help</button>
     </div>
   );

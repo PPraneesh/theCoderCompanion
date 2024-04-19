@@ -31,7 +31,6 @@ md-block {
 }
 .header-div {
   height: 6%;
-
   width: 100%;
   display: flex;
   justify-content: center;
@@ -46,22 +45,59 @@ md-block {
   justify-content: center;
   align-items: center;
 }
-
+.editor-lang{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
 .run-btn {
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-left:white 2px solid;
   width: 100px;
   height: 2rem;
   background-color: #222222;
   color: white;
   margin: auto;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: large;
   &:hover {
     background-color: rgb(64, 64, 64);
   }
 }
-
+.lang-dropdown{
+  width: 70%;
+  color:#000;
+}
+.loading{
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem auto;
+}
+.gemini-pane .loading{
+  width: 4rem;
+  height: 4rem;
+  margin: 0.5rem auto;
+}
+.submit-btn{
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 100px;
+  height: 2rem;
+  background-color: #222222;
+  color: white;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  font-size: large;
+  &:hover {
+    background-color: rgb(64, 64, 64);
+  }
+}
 .gemini-btn {
   font-size: medium;
   width: 200px;

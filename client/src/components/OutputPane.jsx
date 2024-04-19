@@ -50,7 +50,13 @@ export default function OutputPane(props) {
             <div className="output">
                 {
                     props.processing ? (
+                        <>
                         <h3>Processing...</h3>
+                        <div className="loading">
+                             <img src="/tube-spinner.svg" alt="loading" />
+                        </div>
+                        
+                        </>
                     ) :
 
                     props.output ? (
