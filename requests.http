@@ -4,3 +4,6 @@ GET https://animated-space-waddle-w6pjj6g7j7w2v994-3000.app.github.dev/problems
 ### go to that link above one
 
 GET https://animated-space-waddle-w6pjj6g7j7w2v994-3000.app.github.dev/problems/ls
+
+###
+POST http://localhost:3000/genai

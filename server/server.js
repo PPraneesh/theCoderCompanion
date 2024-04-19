@@ -5,6 +5,9 @@ const cors = require('cors');
 require('dotenv').config();
 const axios = require('axios');
 const btoa = require('btoa');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 app.use(cors());
 app.use(express.json());
 
@@ -52,7 +55,14 @@ app.get('/problems/:problemId', async (req, res, next) => {
     }
     res.send(problem);
 });
-
+app.post("/genai", async (req, res) => {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    const prompt = req.body.prompt;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    res.send(text)
+});
 app.post("/submit", async (req, res) => {
     const { lang, code, customInput } = req.body;
     console.log(lang, code, customInput)

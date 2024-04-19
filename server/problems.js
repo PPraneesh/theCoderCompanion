@@ -1,7 +1,7 @@
 const problems = [
     {
         "problemId": "mea",
-        "name": "Maximum Elelent in an array",
+        "name": "Maximum Element in an array",
         "description": "Given an array of integers, find the maximum element in it.",
         "inputformat": "The first line of input contains N - the size of the array and the second line contains the elements of the array.",
         "outputformat": "Print the maximum element in the array.",

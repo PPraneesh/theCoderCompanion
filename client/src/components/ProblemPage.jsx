@@ -29,6 +29,7 @@ export default function ProblemPage() {
 
     const { id } = useParams();
     const [problem, setProblem] = useState({});
+    const [geminiResponse,setGeminiResponse]= useState("")
     useEffect(() => {
         if (id) {
             axios.get(`${url}problems/${id}`)
@@ -69,7 +70,15 @@ export default function ProblemPage() {
                 })
         }
     }
-
+    const geminiHelp = ()=>{
+        let code = langOption.value === "javascript" ? jsCode : langOption.value === "Java" ? javaCode : cppCode
+      axios.post(url+'genai',{
+        prompt:"See this problem statement and tell what's wrong with given code and dont give corrected code, let me learn, just give few hints or points so that i can understand how to get that logic of question\n"+problem.description+"\n"+code
+      })
+      .then(res=>{
+        setGeminiResponse(res.data)
+      })
+    }
     
 
 
@@ -125,7 +134,7 @@ export default function ProblemPage() {
                 </PanelGroup>;
             </div>
             
-            <GeminiPane pane={geminiPane}/>
+            <GeminiPane pane={geminiPane} geminiResponse={geminiResponse} geminiHelp={geminiHelp}/>
             
         </div>
     );

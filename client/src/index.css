@@ -1,169 +1,181 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,h2,h3{
+  font-weight: 600;
+}
+body {
+  font-family: "Work Sans", sans-serif;
+  background-color: #0f0f0f;
+  overflow-x: hidden;
 }
 
-body{
-    font-family: 'Roboto', sans-serif;
-    background-color: #0f0f0f;
-    overflow-x: hidden;
+code {
+  white-space: pre-wrap;
+}
+md-block {
+  font-size: 1rem;
+  display:block;
+  white-space: pre;
+  font-family: monospace;
+  text-wrap: wrap;
+}
+.root-div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.header-div {
+  height: 6%;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  color: white;
 }
 
-code{
-    white-space: pre-wrap;
+.buttons-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.root-div{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-.header-div{
-    height: 6%;
-    
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1rem;
-    color: white;
-    
+.run-btn {
+  width: 100px;
+  height: 2rem;
+  background-color: #222222;
+  color: white;
+  margin: auto;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: large;
+  &:hover {
+    background-color: rgb(64, 64, 64);
+  }
 }
 
-.buttons-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.gemini-btn {
+  font-size: medium;
+  width: 200px;
+  position: absolute;
+  right: 2rem;
+}
+.gemini-help-btn{
+  font-size: medium;
+  width: 200px;
+  display: block;
+  margin: 0.6rem auto;
+}
+.gemini-pane {
+  position: absolute;
+  padding: 0.75rem;
+  width: 30vw;
+  height: 90%;
+  right: -30vw;
+  margin-top: 6vh;
+  background-color: #1b1b1b;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  transition: ease-in-out 0.5s;
 }
 
-.run-btn{
-    width: 100px;
-    height: 2rem;
-    background-color: #222222;
-    color: white;
-    margin: auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: large;
-    &:hover{
-        background-color: rgb(64, 64, 64);
-    }
+.gemini-pane.active {
+  display: block;
+  right: 0;
 }
 
-.gemini-btn{
-    font-size: medium;
-    width: 200px;
-    position: absolute;
-    right: 2rem;
+.content {
+  height: 93%;
+  overflow-y: hidden;
 }
 
-.gemini-pane{
-    position: absolute;
-    width: 30vw;
-    height: 90%;
-    right: -30vw;
-    margin-top: 6vh;
-    background-color: #0f0f0f;
-    color: white;
-    border: 1px solid white;
-    border-radius: 10px;
-    transition: ease-in-out 0.5s;
+.problem-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0px 0.1rem 0 0.4rem;
+  border: 1px solid #0f0f0f;
+  background-color: #262626;
+  border-radius: 10px;
+  color: white;
 }
 
-.gemini-pane.active{
-    display: block;
-    right: 0;
+.problem > h3 {
+  margin-bottom: 0.5rem;
 }
 
-
-.content{
-    height: 93%;
-    overflow-y: hidden;
+.resize-handle {
+  width: 3px;
+  &:hover {
+    background-color: #204e80;
+  }
+  border-radius: 20%;
 }
 
-.problem-pane{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 0px 0.1rem 0 0.4rem;
-    border: 1px solid #0f0f0f;
-    background-color: #262626;
-    border-radius: 10px;
-    color: white;
+.resize-handlev {
+  width: 100%;
+  height: 3px;
+  &:hover {
+    background-color: #204e80;
+  }
+  border-radius: 20%;
 }
 
-.problem > h3{
-    margin-bottom: 0.5rem;
+.editor-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0px 0.4rem 3px 0.1rem;
+  border: 1px solid #0f0f0f;
+  background-color: #262626;
+  border-radius: 10px;
+  color: white;
 }
 
-.resize-handle{
-    width: 3px;
-    &:hover{
-        background-color: #204e80;
-    }
-    border-radius: 20%;
+.stats-pane {
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 2px 0.4rem 0 0.1rem;
+  border: 1px solid #0f0f0f;
+  background-color: #262626;
+  border-radius: 10px;
+  color: white;
 }
 
-.resize-handlev{
-    
-    width: 100%;
-    height: 3px;
-    &:hover{
-        background-color: #204e80;
-    }
-    border-radius: 20%;
+.input-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0px 0.4rem 0 0.1rem;
+  border-radius: 10px;
+  color: white;
 }
 
-.editor-pane{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 0px 0.4rem 3px 0.1rem;
-    border: 1px solid #0f0f0f;
-    background-color: #262626;
-    border-radius: 10px;
-    color: white;
+textarea {
+  width: 90%;
+  height: 90%;
 }
 
-.stats-pane{
-    height: 98%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 2px 0.4rem 0 0.1rem;
-    border: 1px solid #0f0f0f;
-    background-color: #262626;
-    border-radius: 10px;
-    color: white;
+.output-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0px 0.4rem 0 0.1rem;
+  border-radius: 10px;
+  color: white;
 }
-
-.input-pane{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 0px 0.4rem 0 0.1rem;
-    border-radius: 10px;
-    color: white;
-}
-
-textarea{
-    width: 90%;
-    height: 90%;
-}
-
-.output-pane{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    margin: 0px 0.4rem 0 0.1rem;
-    border-radius: 10px;
-    color: white;
-}
-
