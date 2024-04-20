@@ -59,13 +59,12 @@ app.post("/genai", async (req, res) => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     const prompt = req.body.prompt;
     const result = await model.generateContent(prompt);
-    const response = await result.response;
+    const response = result.response;
     const text = response.text();
     res.send(text)
 });
 app.post("/submit", async (req, res) => {
     const { lang, code, customInput } = req.body;
-    console.log(lang, code, customInput)
     const options = {
         method: 'POST',
         url: 'https://judge0-ce.p.rapidapi.com/submissions',
@@ -80,7 +79,7 @@ app.post("/submit", async (req, res) => {
             "X-RapidAPI-Key": process.env.JUDGE0_RAPID_API_KEY,
         },
         data: {
-            language_id: 52,
+            language_id: lang,
             source_code: btoa(code),
             stdin: btoa(customInput)
         }
