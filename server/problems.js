@@ -8,7 +8,8 @@ const problems = [
         "constraint": "1 <= N <= 1000, 1 <= A[i] <= 10^6",
         "input": "5\n1 2 3 4 5",
         "output": "5",
-        "explanation": "The maximum element in the array is 5."
+        "explanation": "The maximum element in the array is 5.",
+        "difficulty": "Easy"
     },
     {
         "problemId": "capb",
@@ -19,7 +20,8 @@ const problems = [
         "constraint": "1 <= A, B <= 10^6",
         "input": "2 3",
         "output": "8",
-        "explanation": "2 raised to the power 3 is 8."
+        "explanation": "2 raised to the power 3 is 8.",
+        "difficulty": "Medium"
     },
     {
         "problemId": "ra",
@@ -30,7 +32,8 @@ const problems = [
         "constraint": "1 <= N <= 1000, 1 <= A[i] <= 10^6",
         "input": "5\n1 2 3 4 5",
         "output": "5 4 3 2 1",
-        "explanation": "The reversed array is 5 4 3 2 1."
+        "explanation": "The reversed array is 5 4 3 2 1.",
+        "difficulty": "Easy"
     }
     ,
     {
@@ -42,7 +45,8 @@ const problems = [
         "constraint": "1 <= N <= 1000, 1 <= A[i] <= 10^6",
         "input": "5\n1 2 3 4 5\n3",
         "output": "2",
-        "explanation": "The element 3 is found at index 2."
+        "explanation": "The element 3 is found at index 2.",
+        "difficulty": "Easy"
 
     },
     {
@@ -54,7 +58,8 @@ const problems = [
         "constraint": "1 <= T <= 100\n 4 <= N <= 10^6",
         "input": "2\n 8 \n 1 3 2 3 4 6 5 5 \n 10 \n 1 5 2 8 1 4 7 4 3 6",
         "output": "3 5 \n 1 4",
-        "explanation": "Self Explanatory"
+        "explanation": "Self Explanatory",
+        "difficulty": "Medium"
     }
     ,
     {
@@ -66,7 +71,8 @@ const problems = [
         "constraint": "1 <= N <= 1000, 1 <= A[i] <= 10^6",
         "input": "5\n1 2 3 4 5",
         "output": "1 2 3 4 5",
-        "explanation": "All elements in the array are unique."
+        "explanation": "All elements in the array are unique.",
+        "difficulty": "Medium"
     },
     {
         "problemId": "tm",
@@ -77,7 +83,8 @@ const problems = [
         "constraint": "1 <= N <= 1000, 1 <= A[i][j] <= 10^6",
         "input": "3\n1 2 3\n4 5 6\n7 8 9",
         "output": "1 4 7\n2 5 8\n3 6 9",
-        "explanation": "The transposed matrix is 1 4 7\n2 5 8\n3 6 9."
+        "explanation": "The transposed matrix is 1 4 7\n2 5 8\n3 6 9.",
+        "difficulty": "Medium"
     },
     {
         "problemId": "capb",
@@ -88,7 +95,8 @@ const problems = [
         "constraint": "1 <= A, B <= 10^6",
         "input": "2 3",
         "output": "8",
-        "explanation": "2 raised to the power 3 is 8."
+        "explanation": "2 raised to the power 3 is 8.",
+        "difficulty": "Medium"
     }
 ]
 
