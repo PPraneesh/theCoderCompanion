@@ -17,9 +17,9 @@ export default function ProblemPage() {
         { value: 'javascript', label: 'javascript', id: 63 },
         { value: 'Java', label: 'Java', id: 62 }
     ]
-    let [jsCode, setJsCode] = useState("// some comment");
-    let [javaCode, setJavaCode] = useState("// some comment");
-    let [cppCode, setCppCode] = useState("// some comment");
+    let [jsCode, setJsCode] = useState("//your code goes here\nconsole.log('Hello World')");
+    let [javaCode, setJavaCode] = useState("class Main{\n\tpublic static void main(String[] args){\n\t\t//your code goes here\n\n\t}\n}");
+    let [cppCode, setCppCode] = useState("#include<bits/stdc++.h>\nusing namespace std;\n\nint main(){\n\t//your code goes here\n\n\treturn 0;\n}");
     let [langOption, setLangOption] = useState(options[0])
     let [processing, setProcessing] = useState(false)
     let [geminiCall, setGeminiCall] = useState(false)

@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
-import {urlContext} from '../urlContext';
+import { Link } from 'react-router-dom';
+import { urlContext } from '../urlContext';
 
 export default function AllProblems() {
-    const {url} = useContext(urlContext);
+    const { url } = useContext(urlContext);
     const [problems, setProblems] = useState([]);
 
     useEffect(() => {
@@ -21,14 +21,27 @@ export default function AllProblems() {
     return (
         <div className="problems">
             <h1>All Problems</h1>
-            {problems && problems.map((problem, index) => (
-                <Link to={`/problems/${problem.problemId}`}>
-                    <div key={index}>
-                        <p>{index + 1}</p>
-                        <h2>{problem.name}</h2>
-                    </div>
-                </Link>
-            ))}
+            <div className="problems">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {problems && problems.map((problem, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td><Link to={`/problems/${problem.problemId}`}>{problem.name}</Link></td>
+                                <td>{problem.difficulty}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 }

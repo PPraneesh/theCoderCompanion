@@ -29,13 +29,13 @@ export default function OutputPane(props) {
                     Time Limit Exceeded
                 </pre>
             );
-        }else if(statusId === 4){
+        } else if (statusId === 4) {
             return (
                 <pre>
                     Wrong Answer
                 </pre>
             );
-        }else {
+        } else {
             return (
                 <pre>
                     {atobHandler(outputDetails?.stderr)}
@@ -43,28 +43,27 @@ export default function OutputPane(props) {
             );
         }
     };
-    
+
     return (
         <div className="output-pane">
-            <h2>Output</h2>
+            <h2>Console</h2>
             <div className="output">
                 {
                     props.processing ? (
                         <>
-                        <h3>Processing...</h3>
-                        <div className="loading">
-                             <img src="/tube-spinner.svg" alt="loading" />
-                        </div>
-                        
+                            <h3>Processing...</h3>
+                            <div className="loading">
+                                <img src="/tube-spinner.svg" alt="loading" />
+                            </div>
                         </>
                     ) :
 
-                    props.output ? (
-                        getOutput(JSON.parse(props.output))
-                    ) : (
-                        <h3>{props.output}</h3>
-                    )
-                    }
+                        props.output ? (
+                            getOutput(JSON.parse(props.output))
+                        ) : (
+                            <h3>{props.output}</h3>
+                        )
+                }
             </div>
         </div>
     )
