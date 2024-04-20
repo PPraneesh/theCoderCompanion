@@ -36,6 +36,7 @@ export default function ProblemPage() {
             axios.get(`${url}problems/${id}`)
                 .then((res) => {
                     setProblem(res.data);
+                    setInput(res.data.input)
                 })
                 .catch(err => {
                     console.log(err);
@@ -118,7 +119,7 @@ export default function ProblemPage() {
                                     <h3>Testcases</h3>
                                     <PanelGroup autoSaveId="example" direction="horizontal" >
                                         <Panel defaultSize={50} className="input-pane">
-                                            <InputPane input={problem.input} setInput={setInput} />
+                                            <InputPane input={input} setInput={setInput} />
                                         </Panel>
                                         <hr />
                                         <Panel defaultSize={50} className="output-pane">
