@@ -6,6 +6,7 @@
   box-sizing: border-box;
 }
 h1,h2,h3{
+  color: #fff;
   font-weight: 600;
 }
 body {
@@ -30,8 +31,57 @@ md-block {
   height: 100vh;
 }
 
+.assproblems{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.problems{
+  width: 80%;
+}
+
+.problems table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.problems table th{
+  background-color: #1b1b1b;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid #0f0f0f;
+}
+
+.problems table td{
+  background-color: #262626;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid #0f0f0f;
+}
+
+.problems table tr{
+  cursor: pointer;
+}
 
 
+.problems table tr:hover{
+  background-color: #33333369;
+}
+
+.problems table tr td a{
+  color: white;
+  text-decoration: none;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
 
 .header-div {
   height: 6%;
@@ -107,6 +157,18 @@ md-block {
   width: 200px;
   position: absolute;
   right: 2rem;
+  border-radius: 5px;
+  border-left:white 2px solid;
+  height: 2rem;
+  background-color: #222222;
+  color: white;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  &:hover {
+    background-color: rgb(64, 64, 64);
+  }
 }
 .gemini-help-btn{
   font-size: medium;
@@ -148,6 +210,11 @@ md-block {
   background-color: #262626;
   border-radius: 10px;
   color: white;
+  overflow: scroll;
+}
+
+.problem-pane::-webkit-scrollbar {
+  display: none;
 }
 
 .problem > h3 {
@@ -199,7 +266,7 @@ md-block {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   margin: 0px 0.4rem 0 0.1rem;
   border-radius: 10px;
   color: white;
@@ -214,8 +281,13 @@ textarea {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   margin: 0px 0.4rem 0 0.1rem;
   border-radius: 10px;
   color: white;
+  overflow: scroll;
+}
+
+.output-pane::-webkit-scrollbar{
+  display: none;
 }

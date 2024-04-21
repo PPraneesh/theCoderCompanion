@@ -15,12 +15,15 @@ export default function OutputPane(props) {
                     {atobHandler(outputDetails?.compile_output)}
                 </pre>
             );
-        } else if (statusId === 3) {
+        } else if
+            (statusId === 3) {
             return (
+                
                 <pre>
                     {outputDetails.stdout !== null
-                        ? atobHandler(outputDetails.stdout)
-                        : null}
+                        ? (props.runOrSubmit==="run" ? atobHandler(outputDetails.stdout) : outputDetails.status.description)
+                        : null
+                    }
                 </pre>
             );
         } else if (statusId === 5) {

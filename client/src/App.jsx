@@ -13,10 +13,6 @@ function App() {
             element: <AllProblems />,
         },
         {
-            path: '/problems',
-            element: <AllProblems />,
-        },
-        {
             path: '/problems/:id',
             element: <ProblemPage />,
         }

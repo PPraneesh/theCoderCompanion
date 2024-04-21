@@ -7,7 +7,7 @@ export default function InputPane(props) {
     return (
         <div className="inputPane">
             <h2>Input</h2>
-            <textarea onChange={handleChange} defaultValue={props.input} />
+            <textarea rows={7} onChange={handleChange} defaultValue={props.input} />
         </div>
     )
 }

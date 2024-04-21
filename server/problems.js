@@ -56,8 +56,8 @@ const problems = [
         "inputformat": "The first line of input contains T - the number of test cases. It's followed by 2T lines, the first line contains N - the size of the array and second line contains the elements of the array.",
         "outputformat": "Print the 2 repeated numbers in sorted manner, for each test case, separated by new line.",
         "constraint": "1 <= T <= 100\n 4 <= N <= 10^6",
-        "input": "2\n 8 \n 1 3 2 3 4 6 5 5 \n 10 \n 1 5 2 8 1 4 7 4 3 6",
-        "output": "3 5 \n 1 4",
+        "input": "2\n8\n1 3 2 3 4 6 5 5\n10\n1 5 2 8 1 4 7 4 3 6",
+        "output": "3 5\n1 4",
         "explanation": "Self Explanatory",
         "difficulty": "Medium"
     }
@@ -68,7 +68,7 @@ const problems = [
         "description": "Given an array of integers, find the unique elements in the array.",
         "inputformat": "The first line of input contains N - the size of the array and the second line contains the elements of the array.",
         "outputformat": "Print the unique elements in the array.",
-        "constraint": "1 <= N <= 1000, 1 <= A[i] <= 10^6",
+        "constraint": "1 <= N <= 1000,\n1 <= A[i] <= 10^6",
         "input": "5\n1 2 3 4 5",
         "output": "1 2 3 4 5",
         "explanation": "All elements in the array are unique.",
@@ -85,6 +85,17 @@ const problems = [
         "output": "1 4 7\n2 5 8\n3 6 9",
         "explanation": "The transposed matrix is 1 4 7\n2 5 8\n3 6 9.",
         "difficulty": "Medium"
+    }, {
+        "problemId": "xandy",
+        "name": "X and Y set bits",
+        "description": "Given two numbers X and Y, find the number whose binary representation has its Xth and Yth bits set to 1 and remaining bits set to 0.",
+        "inputformat": "The first line of input contains T - the number of test cases. It's followed by T lines. Each subsequent line contains two integers: X - the index of the first set bit and Y - the index of the second set bit, separated by a space.",
+        "outputformat": "For each test case, print the number whose binary representation has its Xth and Yth bits set to 1 and the remaining bits set to zero, separated by a new line.Since this number can be very large, print the result % 1000000007.",
+        "constraint": "1 <= T <= 10^5, 0 <= X,Y <= 10^5",
+        "input": "3\n4 3\n5 0\n15 30",
+        "output": "24\n33\n73774585",
+        "explanation": "Test-Case 1\nThe binary representation of the number that has bits at position 3 and 4 set is 11000 = 24\nTest-Case 2\nThe binary representation of the number that has the bit at position 5 and 0 set is 100001 = 33",
+        "difficulty": "medium"
     },
     {
         "problemId": "capb",

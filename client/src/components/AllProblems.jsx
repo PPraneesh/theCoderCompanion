@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { urlContext } from '../urlContext';
 
 export default function AllProblems() {
@@ -17,9 +17,14 @@ export default function AllProblems() {
             });
 
     }, [])
+    const navigate = useNavigate()
+    const handleproblemnavigate = (id) => {
+        navigate(`/problems/${id}`)
+    }
+
 
     return (
-        <div className="problems">
+        <div className="assproblems">
             <h1>All Problems</h1>
             <div className="problems">
                 <table>
@@ -32,16 +37,17 @@ export default function AllProblems() {
                     </thead>
                     <tbody>
                         {problems && problems.map((problem, index) => (
-                            <tr key={index}>
+                            <tr key={index} onClick={() => handleproblemnavigate(problem.problemId)} >
                                 <td>{index + 1}</td>
-                                <td><Link to={`/problems/${problem.problemId}`}>{problem.name}</Link></td>
-                                <td>{problem.difficulty}</td>
+                                <td>{problem.name}</td>
+                                <td className={problem.difficulty}>{problem.difficulty}</td>
                             </tr>
+
                         ))}
                     </tbody>
                 </table>
             </div>
 
-        </div>
+        </div >
     );
 }

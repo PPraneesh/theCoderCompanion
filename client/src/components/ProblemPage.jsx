@@ -25,7 +25,7 @@ export default function ProblemPage() {
     let [geminiCall, setGeminiCall] = useState(false)
     let [output, setOutput] = useState("")
     const [input, setInput] = useState("")
-
+const [runOrSubmit,setRunOrSubmit]=useState("")
     const [geminiPane, setGeminiPane] = useState(false)
 
     const { id } = useParams();
@@ -52,13 +52,34 @@ export default function ProblemPage() {
         langOption.value === "Java" && setJavaCode(value)
         langOption.value === "C++" && setCppCode(value)
     }
-    const handleProcessing = () => {
+    const handleRun = () => {
         if (processing === false) {
             setProcessing(true)
-            axios.post(`${url}submit`, {
+            setRunOrSubmit("run")
+            axios.post(`${url}run`, {
                 lang: langOption.id,
                 code: langOption.value === "javascript" ? jsCode : langOption.value === "Java" ? javaCode : cppCode,
                 customInput: input
+            })
+                .then(res => {
+                    setProcessing(false)
+                    setOutput(JSON.stringify(res.data))
+                })
+                .catch(err => {
+                    console.log(err)
+                    setProcessing(false)
+                    setOutput("Error")
+                })
+        }
+    }
+    const handleSubmit = () => {
+        if (processing === false) {
+            setProcessing(true)
+            setRunOrSubmit("submit")
+            axios.post(`${url}submit`, {
+                lang: langOption.id,
+                code: langOption.value === "javascript" ? jsCode : langOption.value === "Java" ? javaCode : cppCode,
+                problemId: problem.problemId
             })
                 .then(res => {
                     setProcessing(false)
@@ -88,10 +109,10 @@ export default function ProblemPage() {
             <div className="header-div">
                 <div className="buttons-header">
 
-                    <button onClick={handleProcessing} className="run-btn" >Run</button>
-                    <button onClick={handleProcessing} className="submit-btn">Submit</button>
+                    <button onClick={handleRun} className="run-btn" >Run</button>
+                    <button onClick={handleSubmit} className="submit-btn">Submit</button>
                 </div>
-                <button onClick={()=>setGeminiPane(!geminiPane)} className="run-btn gemini-btn">Get help with Gemini</button>
+                <button onClick={()=>setGeminiPane(!geminiPane)} className="gemini-btn">Get help with Gemini</button>
             </div>
             <div className="content">
 
@@ -116,14 +137,14 @@ export default function ProblemPage() {
                             <PanelResizeHandle className="resize-handlev" />
                             <Panel minSize={7} defaultSize={35} maxSize={90}>
                                 <div className="stats-pane">
-                                    <h3>Testcases</h3>
+                                    <h2>Testcases</h2>
                                     <PanelGroup autoSaveId="example" direction="horizontal" >
                                         <Panel defaultSize={50} className="input-pane">
                                             <InputPane input={input} setInput={setInput} />
                                         </Panel>
                                         <hr />
                                         <Panel defaultSize={50} className="output-pane">
-                                            <OutputPane processing={processing} output={output} />
+                                            <OutputPane runOrSubmit={runOrSubmit} processing={processing} output={output} />
                                         </Panel>
                                     </PanelGroup>
                                 </div>
