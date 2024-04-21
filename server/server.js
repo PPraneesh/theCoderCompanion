@@ -64,6 +64,47 @@ app.post("/genai", async (req, res) => {
     res.send(text)
 });
 app.post("/submit", async (req, res) => {
+    const { lang, code, problemId } = req.body;
+    const problem = problems.find(p => p.problemId === problemId);
+    const options = {
+        method: 'POST',
+        url: 'https://judge0-ce.p.rapidapi.com/submissions',
+        params: {
+            base64_encoded: 'true',
+            fields: '*'
+        },
+        headers: {
+            'content-type': 'application/json',
+            'Content-Type': 'application/json',
+            "X-RapidAPI-Host": process.env.JUDGE0_RAPID_API_HOST,
+            "X-RapidAPI-Key": process.env.JUDGE0_RAPID_API_KEY,
+        },
+        data: {
+            language_id: lang,
+            source_code: btoa(code),
+            stdin: btoa(problem.input),
+            expected_output: btoa(problem.output),
+        }
+    };
+    try {
+        const response = await axios.request(options);
+        console.log("token", response.data);
+        const token = response.data.token;
+        
+
+        setTimeout(async() => {
+            const result =  await checkStatus(token)
+            console.log(result)
+            res.send(result)
+        }, 4000)
+        
+
+    } catch (error) {
+        console.error(error);
+        return res.send({ message: "Internal Server Error" });
+    }
+});
+app.post("/run", async (req, res) => {
     const { lang, code, customInput } = req.body;
     const options = {
         method: 'POST',
@@ -94,7 +135,7 @@ app.post("/submit", async (req, res) => {
             const result =  await checkStatus(token)
             console.log(result)
             res.send(result)
-        }, 2000)
+        }, 4000)
         
 
     } catch (error) {
@@ -102,7 +143,6 @@ app.post("/submit", async (req, res) => {
         return res.send({ message: "Internal Server Error" });
     }
 });
-
 
 
 app.use((err, req, res, next) => {

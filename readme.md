@@ -7,6 +7,9 @@ problems page
 compiler, solving page
 - 
 
+home page
+test cases
+
 token { token: '6fe70257-e02c-4462-a938-2eb4f8b42a2c' }
 response.data  {
   source_code: 'Ly8gc29tZSBjb21tZW50DQojaW5jbHVkZTxiaXRzL3N0ZGMrKy5oPg0KaW50\n' +
