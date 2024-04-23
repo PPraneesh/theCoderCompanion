@@ -48,6 +48,6 @@ export default function AllProblems() {
                 </table>
             </div>
 
-        </div >
+        </div>
     );
 }

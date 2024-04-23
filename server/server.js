@@ -57,7 +57,11 @@ app.get('/problems/:problemId', async (req, res, next) => {
 });
 app.post("/genai", async (req, res) => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-    const prompt = req.body.prompt;
+    const code = req.body.code;
+    const problemId = req.body.problemId;
+    const typeOfHelp = req.body.typeOfHelp;
+    const problem = problems.find(p => p.problemId === problemId);
+    prompt = "I need help with the following code: \n" + problem.statement + "\n" +" I need the following help "+ typeOfHelp + "\n" + "my code is "+ code + "\n the best way to solve this problem is to "+ problem.bestCode + "\n "+"don't give me the code , just help me build the intuition to solve this problem. \n, , dont be lengthy and give in a way that user can fastly understand, give answer based on his code and dont give ** instead give *";
     const result = await model.generateContent(prompt);
     const response = result.response;
     const text = response.text();
@@ -82,8 +86,8 @@ app.post("/submit", async (req, res) => {
         data: {
             language_id: lang,
             source_code: btoa(code),
-            stdin: btoa(problem.input),
-            expected_output: btoa(problem.output),
+            stdin: btoa(problem.testInput),
+            expected_output: btoa(problem.testOutput),
         }
     };
     try {
