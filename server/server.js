@@ -10,7 +10,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const corsOptions = {
     origin: ['http://localhost:5173', 'https://the-coder-companion.vercel.app'],
-    credendials: true
+    credentials: true
 }
 
 app.use(cors(corsOptions));
