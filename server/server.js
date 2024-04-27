@@ -8,7 +8,10 @@ const btoa = require('btoa');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST']    
+}));
 app.use(express.json());
 
 const checkStatus = async (token) => {
