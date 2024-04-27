@@ -8,12 +8,7 @@ const btoa = require('btoa');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const corsOptions = {
-    origin: ['http://localhost:5173', 'https://the-coder-companion.vercel.app'],
-    credentials: true
-}
-
-app.use(cors(corsOptions));
+app.use(cors({ origin: true }));
 app.use(express.json());
 
 const checkStatus = async (token) => {
