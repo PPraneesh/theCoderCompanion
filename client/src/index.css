@@ -358,3 +358,21 @@ textarea {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
 }
+
+.phonescreen{
+  display: none;
+}
+
+@media  screen and (max-width: 868px){  
+  .root-div{
+    display: none;
+  }
+  .phonescreen{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 1rem;
+  }
+}

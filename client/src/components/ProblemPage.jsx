@@ -126,11 +126,12 @@ export default function ProblemPage() {
       })
       .then((res) => {
         setGeminiCall(false);
-        setGeminiResponse(res.data);
+        setGeminiResponse(geminiResponse +"\n\nchat \n\n\n" +res.data);
       });
   };
 
   return (
+    <>
     <div className="root-div">
       <div className="header-div">
         <div className="buttons-header">
@@ -199,7 +200,12 @@ export default function ProblemPage() {
         geminiHelp={geminiHelp}
         typeOfHelp={typeOfHelp}
         setTypeOfHelp={setTypeOfHelp}
+        runOrSubmit={runOrSubmit}
       />
     </div>
+    <div className="phonescreen">
+      <h1>This website is designed only for tab or higher display sizes</h1>
+    </div>
+    </>
   );
 }
