@@ -61,7 +61,7 @@ app.post("/genai", async (req, res) => {
     const problemId = req.body.problemId;
     const typeOfHelp = req.body.typeOfHelp;
     const problem = problems.find(p => p.problemId === problemId);
-    prompt = "I need help with the following code: \n" + problem.statement + "\n" +" I need the following help "+ typeOfHelp + "\n" + "my code is "+ code + "\n the best way to solve this problem is to "+ problem.bestCode + "\n "+"don't give me the code , just help me build the intuition to solve this problem. \n, , dont be lengthy and give in a way that user can fastly understand, give answer based on his code and dont give ** instead give *";
+    prompt = "Need help with the following problem:\n" + problem.statement + "\n" +"Need the following help (Only do the help which is asked!!): "+ typeOfHelp + "\n" + "The program which I wrote is :\n"+ code + "\n The Correct and best way to solve this problem is :\n"+ problem.bestCode + "\n "+"Now, just help me build the intuition to solve this problem. Don't give me complete code you might give snippet based on the type of help\n, give answer in few points, give the guidance based on the code I wrote to help me turn it into best and correct way (which is provided to you above) and start a point with '>' , dont give ' ** ' or '*' in answer ";
     const result = await model.generateContent(prompt);
     const response = result.response;
     const text = response.text();
