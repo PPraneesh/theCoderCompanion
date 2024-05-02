@@ -61,7 +61,7 @@ app.post("/genai", async (req, res) => {
     const problemId = req.body.problemId;
     const typeOfHelp = req.body.typeOfHelp;
     const problem = problems.find(p => p.problemId === problemId);
-    prompt = "Need help with the following problem:\n" + problem.statement + "\n" +"Need the following help (Only do the help which is asked!!): "+ typeOfHelp + "\n" + "The program which I wrote is :\n"+ code + "\n The Correct and best way to solve this problem is :\n"+ problem.bestCode + "\n "+"Now, just help me build the intuition to solve this problem. Don't give me complete code you might give snippet based on the type of help\n, give answer in few points, give the guidance based on the code I wrote to help me turn it into best and correct way (which is provided to you above) and start a point with '>' , dont give ' ** ' or '*' in answer ";
+    prompt = "Need help with the following problem:\n" + problem.statement + "\n" +"Need the following help (Only do the help which is asked!!): "+ typeOfHelp + "\n" + "The program which I wrote is :\n"+ code + "\n The Correct and best way to solve this problem is :\n"+ problem.bestCode + "\n "+"Now, just help me build the intuition to solve this problem. Don't give me complete code you might give a small snippet to help in the case of help with code and efficiency\n, give answer in few points, give the guidance based on the code I wrote to help me turn it into best and correct way (which is provided to you above) and start a point only with '>' , dont give ' ** ' or '*' in answer.";
     const result = await model.generateContent(prompt);
     const response = result.response;
     const text = response.text();
