@@ -13,6 +13,9 @@ The Coder Companion is a coding platform with an AI assistant, Gemini. Students 
    - Judge0 for compiling and running submitted codes
 - **Deployment:**
   - Both the frontend and backend were deployed using Vercel
+## API KEYS
+1. Get your ```JUDGE0_RAPID_API_KEY``` from [here](https://rapidapi.com/judge0-official/api/judge0-ce)
+2. Get your ```GEMINI_API_KEY``` from [here](https://aistudio.google.com/app/apikey)
 ## Local setup instructions:
 1. Clone the repo to your device.
 2. You will need two terminals, one for running server and other for running client.
